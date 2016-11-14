@@ -46,18 +46,21 @@ public class MainActivity extends Activity {
         findViewById(R.id.test_sdk).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mVideoLayout.removeAllViews();
                 getVideoList();
             }
         });
 
         mVideoLayout = (LinearLayout) findViewById(R.id.video_container);
 
-        findViewById(R.id.test_report).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AubeAgent.report(MainActivity.this);
-            }
-        });
+//        findViewById(R.id.test_report).setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                AubeAgent.report(MainActivity.this);
+//            }
+//        });
+
+        getVideoList();
     }
 
     private void getVideoList() {
@@ -88,6 +91,7 @@ public class MainActivity extends Activity {
     }
 
     private void setupData(VideoModel model) {
+        mVideoLayout.removeAllViews();
         for(int i=0; i<model.data.size(); i++) {
             if("episode".equalsIgnoreCase(model.data.get(i).modelCode)) {
                 final List<VideoItem> videos = model.data.get(i).dataDetail;
